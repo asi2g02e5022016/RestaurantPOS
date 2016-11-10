@@ -76,6 +76,7 @@ public class StartPOS {
     public static void main (final String args[]) {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
+            
             @Override
             public void run() {
                 
@@ -87,8 +88,8 @@ public class StartPOS {
                 config.load();
                 
                 // set Locale.
-                String slang = config.getProperty("user.language");
-                String scountry = config.getProperty("user.country");
+                String slang = "es";
+                String scountry = "SV";
                 String svariant = config.getProperty("user.variant");
                 if (slang != null && !slang.equals("") && scountry != null && svariant != null) {                                        
                     Locale.setDefault(new Locale(slang, scountry, svariant));
@@ -120,8 +121,8 @@ public class StartPOS {
                 String hostname = config.getProperty("machine.hostname");
                 TicketInfo.setHostname(hostname);
                 
-                String screenmode = config.getProperty("machine.screenmode");
-                if ("fullscreen".equals(screenmode)) {
+                String screenmode = "fullscreen";
+                if ("fullscreen1".equals(screenmode)) {
                     JRootKiosk rootkiosk = new JRootKiosk();
                     rootkiosk.initFrame(config);
                 } else {

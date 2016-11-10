@@ -76,7 +76,7 @@ public class JRootKiosk extends javax.swing.JFrame implements AppMessage {
             // Show the application
             add(m_rootapp, BorderLayout.CENTER);            
     
-            setTitle(AppLocal.APP_NAME + " - " + AppLocal.APP_VERSION);
+            setTitle("POS - Bodeguita UFG");
             
             Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
             setBounds(0, 0, d.width, d.height);        

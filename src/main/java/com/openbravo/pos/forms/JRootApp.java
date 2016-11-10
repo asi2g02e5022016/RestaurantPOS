@@ -111,7 +111,7 @@ public class JRootApp extends JPanel implements AppView {
     public void actionPerformed(ActionEvent evt) {
             m_clock = getLineTimer();
             m_date = getLineDate();
-            m_jLblTitle.setText("Java POS - Touch friendly point of sale");
+            m_jLblTitle.setText("Bodeguita POS - Punto de Ventas Tactil");
             m_jLblTitle.repaint();
             jLabel2.setText("  " + m_date + " " + m_clock);
         }
@@ -274,7 +274,7 @@ public class JRootApp extends JPanel implements AppView {
         
  // display the new logo if set
         String newLogo = m_props.getProperty("start.logo");
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/logo.png")));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/logoFull.png")));
        /*if (newLogo != null) {
            if ("".equals(newLogo)){
                  jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/logo.png")));
@@ -287,7 +287,7 @@ public class JRootApp extends JPanel implements AppView {
         String newText = m_props.getProperty("start.text");
         if (newText != null) {
             if (newText.equals("")){
-            jLabel1.setText("<html><center>Agile POS - Touch Friendly Point of Sale<br>" +
+            jLabel1.setText("<html><center>Bodeguita POS - Punto de Ventas Touch<br>" +
              "</center>");}
             else{
             try {    
@@ -810,7 +810,7 @@ public class JRootApp extends JPanel implements AppView {
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/unicenta.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/logoFull.png"))); // NOI18N
         jLabel1.setText("<html><center>Java oPOS - Touch Friendly Point of Sale<br>" +
             "</center>");
         jLabel1.setAlignmentX(0.5F);
