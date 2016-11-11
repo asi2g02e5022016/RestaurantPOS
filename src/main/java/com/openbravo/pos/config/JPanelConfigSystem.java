@@ -41,7 +41,6 @@ public class JPanelConfigSystem extends javax.swing.JPanel implements PanelConfi
                 
         
         jTextAutoLogoffTime.getDocument().addDocumentListener(dirty);
-        jMarineOpt.addActionListener(dirty);
         jchkTextOverlay.addActionListener(dirty);
         jchkAutoLogoff.addActionListener(dirty);
         jchkAutoLogoffToTables.addActionListener(dirty);
@@ -90,7 +89,6 @@ public class JPanelConfigSystem extends javax.swing.JPanel implements PanelConfi
         }                
         jTextAutoLogoffTime.setText(config.getProperty("till.autotimer").toString());
 
-        jMarineOpt.setSelected(Boolean.valueOf(config.getProperty("till.marineoption")).booleanValue()); 
         jchkShowCustomerDetails.setSelected(Boolean.valueOf(config.getProperty("table.showcustomerdetails")).booleanValue());
         jchkShowWaiterDetails.setSelected(Boolean.valueOf(config.getProperty("table.showwaiterdetails")).booleanValue());
         jchkTextOverlay.setSelected(Boolean.valueOf(config.getProperty("payments.textoverlay")).booleanValue());        
@@ -143,7 +141,7 @@ public class JPanelConfigSystem extends javax.swing.JPanel implements PanelConfi
     public void saveProperties(AppConfig config) {
         
         config.setProperty("till.autotimer",jTextAutoLogoffTime.getText());
-        config.setProperty("till.marineoption", Boolean.toString(jMarineOpt.isSelected()));
+        config.setProperty("till.marineoption", Boolean.toString(false));
         config.setProperty("table.showcustomerdetails", Boolean.toString(jchkShowCustomerDetails.isSelected()));
         config.setProperty("table.showwaiterdetails", Boolean.toString(jchkShowWaiterDetails.isSelected()));        
         config.setProperty("payments.textoverlay", Boolean.toString(jchkTextOverlay.isSelected()));         
@@ -185,7 +183,6 @@ public class JPanelConfigSystem extends javax.swing.JPanel implements PanelConfi
         jLabelTableNameTextColour = new javax.swing.JLabel();
         jTableNameColour = new javax.swing.JComboBox();
         jPanel4 = new javax.swing.JPanel();
-        jMarineOpt = new javax.swing.JCheckBox();
         jCloseCashbtn = new javax.swing.JCheckBox();
         jCheckPrice00 = new javax.swing.JCheckBox();
         jchkTextOverlay = new javax.swing.JCheckBox();
@@ -319,14 +316,6 @@ public class JPanelConfigSystem extends javax.swing.JPanel implements PanelConfi
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), bundle.getString("label.general"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12), new java.awt.Color(102, 102, 102))); // NOI18N
         jPanel4.setLayout(null);
 
-        jMarineOpt.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jMarineOpt.setText(bundle.getString("label.marine")); // NOI18N
-        jMarineOpt.setMaximumSize(new java.awt.Dimension(0, 25));
-        jMarineOpt.setMinimumSize(new java.awt.Dimension(0, 0));
-        jMarineOpt.setPreferredSize(new java.awt.Dimension(180, 30));
-        jPanel4.add(jMarineOpt);
-        jMarineOpt.setBounds(10, 20, 180, 30);
-
         jCloseCashbtn.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jCloseCashbtn.setText(bundle.getString("message.systemclosecash")); // NOI18N
         jCloseCashbtn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -334,7 +323,7 @@ public class JPanelConfigSystem extends javax.swing.JPanel implements PanelConfi
         jCloseCashbtn.setMinimumSize(new java.awt.Dimension(0, 0));
         jCloseCashbtn.setPreferredSize(new java.awt.Dimension(180, 30));
         jPanel4.add(jCloseCashbtn);
-        jCloseCashbtn.setBounds(210, 20, 180, 30);
+        jCloseCashbtn.setBounds(10, 20, 180, 30);
 
         jCheckPrice00.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jCheckPrice00.setText(bundle.getString("label.pricewith00")); // NOI18N
@@ -348,7 +337,7 @@ public class JPanelConfigSystem extends javax.swing.JPanel implements PanelConfi
             }
         });
         jPanel4.add(jCheckPrice00);
-        jCheckPrice00.setBounds(410, 20, 180, 30);
+        jCheckPrice00.setBounds(210, 20, 180, 30);
 
         jchkTextOverlay.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jchkTextOverlay.setText(bundle.getString("label.currencybutton")); // NOI18N
@@ -431,7 +420,6 @@ public class JPanelConfigSystem extends javax.swing.JPanel implements PanelConfi
     private javax.swing.JLabel jLabelServerTextColour;
     private javax.swing.JLabel jLabelTableNameTextColour;
     private javax.swing.JLabel jLabelTimedMessage;
-    private javax.swing.JCheckBox jMarineOpt;
     private javax.swing.JCheckBox jMoveAMountBoxToTop;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

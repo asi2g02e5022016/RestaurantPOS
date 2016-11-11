@@ -64,6 +64,48 @@ public final class TicketInfo implements SerializableRead, Externalizable {
 
     private static final DateFormat m_dateformat = new SimpleDateFormat("hh:mm");
 
+    /**
+     * @return the sucursal
+     */
+    public static String getSucursal() {
+        return sucursal;
+    }
+
+    /**
+     * @param aSucursal the sucursal to set
+     */
+    public static void setSucursal(String aSucursal) {
+        sucursal = aSucursal;
+    }
+
+    /**
+     * @return the direccion
+     */
+    public static String getDireccion() {
+        return direccion;
+    }
+
+    /**
+     * @param aDireccion the direccion to set
+     */
+    public static void setDireccion(String aDireccion) {
+        direccion = aDireccion;
+    }
+
+    /**
+     * @return the telefono
+     */
+    public static String getTelefono() {
+        return telefono;
+    }
+
+    /**
+     * @param aTelefono the telefono to set
+     */
+    public static void setTelefono(String aTelefono) {
+        telefono = aTelefono;
+    }
+
     private String m_sHost;
     private String m_sId;
     private int tickettype;
@@ -84,7 +126,10 @@ public final class TicketInfo implements SerializableRead, Externalizable {
 
  // JG July 2014 Ticket creator Host - for ticket print
     private static String Hostname;
-
+    private static String sucursal;
+    private static String direccion;
+    private static String telefono;
+    
     public static void setHostname(String name) {
         Hostname=name;
     }
@@ -689,6 +734,7 @@ public final class TicketInfo implements SerializableRead, Externalizable {
       m_config.load();
       String receiptSize =(m_config.getProperty("till.receiptsize"));
       String receiptPrefix =(m_config.getProperty("till.receiptprefix"));
+      
 // we have finished with m_config so unload it      
       m_config =null;
 

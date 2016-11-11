@@ -88,7 +88,27 @@ public class AppConfig implements AppProperties {
     public String getHost() {
         return getProperty("machine.hostname");
     }
+    
+    public String getSucursal() {
+        return getProperty("sucursal");
+    }
+    
+    public String getDireccion() {
+        return getProperty("direccion");
+    }
+    
+    public String getTelefono() {
+        return getProperty("telefono");
+    }
 
+    public String getCodFinal() {
+        return getProperty("codfinal");
+    }
+    
+        public String getResolucion() {
+        return getProperty("resolucion");
+    }
+    
     /**
      *
      * @return .properties filename

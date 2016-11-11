@@ -62,12 +62,12 @@ public class JPanelConfigDatabase extends javax.swing.JPanel implements PanelCon
         jcboDBDriver.addActionListener(dirty);
 
 //  JG 31 Aug 13 - Added DB Defaults
-        jcboDBDriver.addItem("Apache Derby Embedded");
-        jcboDBDriver.addItem("Apache Derby Client/Server");
-        jcboDBDriver.addItem("HSQLDB");
+        //jcboDBDriver.addItem("Apache Derby Embedded");
+        //jcboDBDriver.addItem("Apache Derby Client/Server");
+        //jcboDBDriver.addItem("HSQLDB");
         jcboDBDriver.addItem("MySQL");
-        jcboDBDriver.addItem("Oracle 11g Express");
-        jcboDBDriver.addItem("PostgreSQL");
+        //jcboDBDriver.addItem("Oracle 11g Express");
+        //jcboDBDriver.addItem("PostgreSQL");
         
     }
 
@@ -95,19 +95,19 @@ public class JPanelConfigDatabase extends javax.swing.JPanel implements PanelCon
      */
     @Override
     public void loadProperties(AppConfig config) {
-      
-        jcboDBDriver.setSelectedItem(config.getProperty("db.engine"));
-        jtxtDbDriverLib.setText(config.getProperty("db.driverlib"));
-        jtxtDbDriver.setText(config.getProperty("db.driver"));
-        jtxtDbURL.setText(config.getProperty("db.URL"));
-        
+        String dirname = System.getProperty("dirname.path");
+        dirname = dirname == null ? "./" : dirname;  
+            jtxtDbDriverLib.setText(new File(new File(dirname), "lib/mysql-connector-java-5.1.26-bin.jar").getAbsolutePath());
+            jtxtDbDriver.setText("com.mysql.jdbc.Driver");
+            jtxtDbURL.setText("jdbc:mysql://localhost:3306/pos");
+           
         String sDBUser = config.getProperty("db.user");
         String sDBPassword = config.getProperty("db.password");        
-        if (sDBUser != null && sDBPassword != null && sDBPassword.startsWith("crypt:")) {
+        /*if (sDBUser != null && sDBPassword != null && sDBPassword.startsWith("crypt:")) {
             // La clave esta encriptada.
             AltEncrypter cypher = new AltEncrypter("cypherkey" + sDBUser);
             sDBPassword = cypher.decrypt(sDBPassword.substring(6));
-        }        
+        }        */
         jtxtDbUser.setText(sDBUser);
         jtxtDbPassword.setText(sDBPassword);   
         
@@ -126,9 +126,9 @@ public class JPanelConfigDatabase extends javax.swing.JPanel implements PanelCon
         config.setProperty("db.driver", jtxtDbDriver.getText());
         config.setProperty("db.URL", jtxtDbURL.getText());
         config.setProperty("db.user", jtxtDbUser.getText());
-        AltEncrypter cypher = new AltEncrypter("cypherkey" + jtxtDbUser.getText());       
-        config.setProperty("db.password", "crypt:" + cypher.encrypt(new String(jtxtDbPassword.getPassword())));
-
+        //AltEncrypter cypher = new AltEncrypter("cypherkey" + jtxtDbUser.getText());       
+        //config.setProperty("db.password", "crypt:" + cypher.encrypt(new String(jtxtDbPassword.getPassword())));
+        config.setProperty("db.password", new String(jtxtDbPassword.getPassword()));
         dirty.setDirty(false);
     }
 
@@ -225,8 +225,6 @@ public class JPanelConfigDatabase extends javax.swing.JPanel implements PanelCon
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/uniCenta_logo_vert_100.png"))); // NOI18N
-        jLabel5.setText(bundle.getString("message.DBDefault")); // NOI18N
         jLabel5.setToolTipText("");
         jLabel5.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
@@ -247,7 +245,7 @@ public class JPanelConfigDatabase extends javax.swing.JPanel implements PanelCon
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,6 +333,8 @@ public class JPanelConfigDatabase extends javax.swing.JPanel implements PanelCon
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        jLabel5.getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtxtDbDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtDbDriverActionPerformed
@@ -417,13 +417,13 @@ public class JPanelConfigDatabase extends javax.swing.JPanel implements PanelCon
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        try {
+ /*       try {
             String URL ="http://www.agilepos.com.sv";
             java.awt.Desktop.getDesktop().browse(java.net.URI.create(URL));
         }
         catch (IOException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+        }*/
     }//GEN-LAST:event_jButton1ActionPerformed
     
     

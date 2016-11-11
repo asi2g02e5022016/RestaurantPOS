@@ -119,7 +119,14 @@ public class StartPOS {
                 }
 // JG July 2014 Hostname for Tickets
                 String hostname = config.getProperty("machine.hostname");
+                String sucursal = config.getProperty("sucursal");
+                String direccion = config.getProperty("direccion");
+                String telefono = config.getProperty("telefono");
+                Integer codfinal = Integer.parseInt(config.getProperty("codfinal"));
                 TicketInfo.setHostname(hostname);
+                TicketInfo.setSucursal(sucursal);
+                TicketInfo.setDireccion(direccion);
+                TicketInfo.setTelefono(telefono);
                 
                 String screenmode = "fullscreen";
                 if ("fullscreen1".equals(screenmode)) {

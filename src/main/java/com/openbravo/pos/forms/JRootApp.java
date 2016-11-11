@@ -179,7 +179,8 @@ public class JRootApp extends JPanel implements AppView {
                 if (JOptionPane.showConfirmDialog(this
                         , AppLocal.getIntString(sDBVersion == null ? "message.createdatabase" : "message.updatedatabase")
                         , AppLocal.getIntString("message.title")
-                        , JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {  
+                        , JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) 
+                {  
 
                     try {
                         BatchSentence bsentence = new BatchSentenceResource(session, sScript);

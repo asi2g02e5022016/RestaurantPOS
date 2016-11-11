@@ -181,7 +181,6 @@ public class JPanelTicketSetup extends javax.swing.JPanel implements PanelConfig
         jTextSCRate = new javax.swing.JTextField();
         jLabelSCRate = new javax.swing.JLabel();
         jLabelSCRatePerCent = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
 
         jTextField2.setText("jTextField2");
 
@@ -309,13 +308,6 @@ public class JPanelTicketSetup extends javax.swing.JPanel implements PanelConfig
         jPanel5.add(jLabelSCRatePerCent);
         jLabelSCRatePerCent.setBounds(230, 50, 50, 25);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Service Charge function in development");
-        jPanel5.add(jLabel4);
-        jLabel4.setBounds(380, 10, 290, 70);
-
         add(jPanel5);
         jPanel5.setBounds(10, 180, 730, 90);
     }// </editor-fold>//GEN-END:initComponents
@@ -365,7 +357,6 @@ public class JPanelTicketSetup extends javax.swing.JPanel implements PanelConfig
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelSCRate;
     private javax.swing.JLabel jLabelSCRatePerCent;
     private javax.swing.JPanel jPanel1;

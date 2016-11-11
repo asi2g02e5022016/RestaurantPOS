@@ -65,13 +65,15 @@ public class JPanelConfiguration extends JPanel implements JPanelView {
         
         PanelConfig panel;
         
+        panel = new JPanelConfigGeneral();
+        m_panelconfig.add(panel);
+        jPanelGeneral.add(panel.getConfigComponent());
+        
         panel = new JPanelConfigDatabase();
         m_panelconfig.add(panel);
         jPanelDatabase.add(panel.getConfigComponent());
         
-        panel = new JPanelConfigGeneral();
-        m_panelconfig.add(panel);
-        jPanelGeneral.add(panel.getConfigComponent());
+
         
         panel = new JPanelConfigLocale();
         m_panelconfig.add(panel);
@@ -79,7 +81,6 @@ public class JPanelConfiguration extends JPanel implements JPanelView {
         
         panel = new JPanelConfigPayment();
         m_panelconfig.add(panel);
-        jPanelPayment.add(panel.getConfigComponent());
 
 // JG 24 Oct 13 - Add Peripheral tab
         panel = new JPanelConfigPeripheral();
@@ -204,10 +205,9 @@ public class JPanelConfiguration extends JPanel implements JPanelView {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanelDatabase = new javax.swing.JPanel();
         jPanelGeneral = new javax.swing.JPanel();
+        jPanelDatabase = new javax.swing.JPanel();
         jPanelLocale = new javax.swing.JPanel();
-        jPanelPayment = new javax.swing.JPanel();
         jPanelPeripheral = new javax.swing.JPanel();
         jPanelSystem = new javax.swing.JPanel();
         jPanelTicketSetup = new javax.swing.JPanel();
@@ -223,40 +223,35 @@ public class JPanelConfiguration extends JPanel implements JPanelView {
         jTabbedPane1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(730, 450));
 
-        jPanelDatabase.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jPanelDatabase.setPreferredSize(new java.awt.Dimension(0, 400));
-        jPanelDatabase.setLayout(new javax.swing.BoxLayout(jPanelDatabase, javax.swing.BoxLayout.LINE_AXIS));
-        jTabbedPane1.addTab("Database Setup", jPanelDatabase);
-
         jPanelGeneral.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelGeneral.setPreferredSize(new java.awt.Dimension(0, 400));
         jPanelGeneral.setLayout(new javax.swing.BoxLayout(jPanelGeneral, javax.swing.BoxLayout.LINE_AXIS));
         jTabbedPane1.addTab("General", jPanelGeneral);
 
+        jPanelDatabase.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jPanelDatabase.setPreferredSize(new java.awt.Dimension(0, 400));
+        jPanelDatabase.setLayout(new javax.swing.BoxLayout(jPanelDatabase, javax.swing.BoxLayout.LINE_AXIS));
+        jTabbedPane1.addTab("Base de Datos", jPanelDatabase);
+
         jPanelLocale.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelLocale.setPreferredSize(new java.awt.Dimension(730, 400));
         jPanelLocale.setLayout(new javax.swing.BoxLayout(jPanelLocale, javax.swing.BoxLayout.LINE_AXIS));
-        jTabbedPane1.addTab("Locale", jPanelLocale);
-
-        jPanelPayment.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jPanelPayment.setPreferredSize(new java.awt.Dimension(0, 400));
-        jPanelPayment.setLayout(new javax.swing.BoxLayout(jPanelPayment, javax.swing.BoxLayout.LINE_AXIS));
-        jTabbedPane1.addTab("Payment Method", jPanelPayment);
+        jTabbedPane1.addTab("Idioma", jPanelLocale);
 
         jPanelPeripheral.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelPeripheral.setPreferredSize(new java.awt.Dimension(0, 400));
         jPanelPeripheral.setLayout(new javax.swing.BoxLayout(jPanelPeripheral, javax.swing.BoxLayout.LINE_AXIS));
-        jTabbedPane1.addTab("Peripherals", jPanelPeripheral);
+        jTabbedPane1.addTab("Perifericos", jPanelPeripheral);
 
         jPanelSystem.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelSystem.setPreferredSize(new java.awt.Dimension(0, 400));
         jPanelSystem.setLayout(new javax.swing.BoxLayout(jPanelSystem, javax.swing.BoxLayout.LINE_AXIS));
-        jTabbedPane1.addTab("System Options", jPanelSystem);
+        jTabbedPane1.addTab("Opciones de Sistema", jPanelSystem);
 
         jPanelTicketSetup.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelTicketSetup.setPreferredSize(new java.awt.Dimension(0, 400));
         jPanelTicketSetup.setLayout(new javax.swing.BoxLayout(jPanelTicketSetup, javax.swing.BoxLayout.LINE_AXIS));
-        jTabbedPane1.addTab("Ticket Setup", jPanelTicketSetup);
+        jTabbedPane1.addTab("Configuración de Ticket", jPanelTicketSetup);
 
         jbtnRestore.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jbtnRestore.setText(AppLocal.getIntString("Button.Factory")); // NOI18N
@@ -330,6 +325,9 @@ public class JPanelConfiguration extends JPanel implements JPanelView {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        jTabbedPane1.getAccessibleContext().setAccessibleName("Base de Datos");
+        jTabbedPane1.getAccessibleContext().setAccessibleDescription("");
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnRestoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRestoreActionPerformed
@@ -357,7 +355,6 @@ public class JPanelConfiguration extends JPanel implements JPanelView {
     private javax.swing.JPanel jPanelDatabase;
     private javax.swing.JPanel jPanelGeneral;
     private javax.swing.JPanel jPanelLocale;
-    private javax.swing.JPanel jPanelPayment;
     private javax.swing.JPanel jPanelPeripheral;
     private javax.swing.JPanel jPanelSystem;
     private javax.swing.JPanel jPanelTicketSetup;
