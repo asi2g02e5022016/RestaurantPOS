@@ -2,11 +2,8 @@
 <permissions>
     <class name="com.openbravo.pos.sales.JPanelTicketSales"/>
     <class name="com.openbravo.pos.sales.JPanelTicketEdits"/>
-    <class name="com.openbravo.pos.customers.CustomersPayment"/>
-    <class name="com.openbravo.pos.panels.JPanelPayments"/>
+    <class name="com.openbravo.pos.panels.JPanelCloseMoney"/>
 
-    <class name="sales.EditLines"/>
-    <class name="sales.EditTicket"/>
     <class name="sales.PrintTicket"/>
     <class name="sales.Total"/>
     <class name="sales.ChangeTaxOptions"/>
@@ -19,14 +16,35 @@
     <class name="sales.PrintKitchen"/>
 
 <!-- Standard button scripts -->
-    <class name="button.totaldiscount"/>
     <class name="button.print"/>
     <class name="button.opendrawer"/>
     
 <!-- Additional button scripts -->
-    <class name="button.linediscount"/>
     <class name="button.sendorder"/>
 
+<class name="com.openbravo.pos.forms.MenuCustomers"/>
+<class name="/com/openbravo/reports/salebycustomer.bs"/>
+
+<class name="com.openbravo.pos.forms.MenuStockManagement"/>
+ <class name="/com/openbravo/reports/salecatalog.bs"/>
+     <class name="/com/openbravo/reports/productscatalog.bs"/>
+     <class name="/com/openbravo/reports/products.bs" />
+     
+      <class name="com.openbravo.pos.forms.MenuSalesManagement"/>
+            <class name="/com/openbravo/reports/productsales.bs"/>
+            <class name="/com/openbravo/reports/cashflow.bs"/>
+            <class name="/com/openbravo/reports/cashregisterlog.bs"/>
+            <class name="/com/openbravo/reports/categorysales.bs"/>
+            <class name="/com/openbravo/reports/chartsales.bs"/>
+            <class name="/com/openbravo/reports/closedpos.bs"/>
+            <class name="/com/openbravo/reports/closedpos_1.bs"/>
+            <class name="/com/openbravo/reports/closedproducts.bs"/>
+            <class name="/com/openbravo/reports/closedproducts_1.bs"/>
+            <class name="/com/openbravo/reports/saletaxes.bs" />
+            <class name="/com/openbravo/reports/taxcatsales.bs" />
+            <class name="/com/openbravo/reports/taxes.bs" />
+            <class name="/com/openbravo/reports/top10sales.bs" />
+            
    <class name="Menu.ChangePassword"/>
 
 </permissions>
