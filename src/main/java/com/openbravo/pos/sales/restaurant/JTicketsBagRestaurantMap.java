@@ -33,6 +33,7 @@ import com.openbravo.pos.ticket.TicketLineInfo;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -41,6 +42,8 @@ import javax.swing.*;
  */
 public class JTicketsBagRestaurantMap extends JTicketsBag {
 
+    private static final Logger logger = Logger.getLogger("com.openbravo.data.loader.StaticSentence");
+    
     /**
      *
      */
@@ -103,7 +106,10 @@ public class JTicketsBagRestaurantMap extends JTicketsBag {
         try {
             SentenceList sent = new StaticSentence(
                     app.getSession(), 
-                    "SELECT ID, NAME, IMAGE FROM FLOORS ORDER BY NAME", 
+                    "SELECT X.* FROM (SELECT ID, NAME, IMAGE FROM FLOORS"
+                    + " UNION ALL"
+                    + " SELECT -1, 'PISO VIRTUAL', (SELECT IMAGE FROM FLOORS LIMIT 1) IMAGE FROM DUAL "
+                            + ") X ORDER BY X.NAME", 
                     null, 
                     new SerializerReadClass(Floor.class));
             m_afloors = sent.list();
@@ -117,7 +123,11 @@ public class JTicketsBagRestaurantMap extends JTicketsBag {
             SentenceList sent = new StaticSentence(
                     app.getSession(), 
                     // "SELECT ID, NAME, X, Y, FLOOR, CUSTOMER FROM PLACES ORDER BY FLOOR", 
-                    "SELECT ID, NAME, X, Y, FLOOR, CUSTOMER, WAITER, TICKETID, TABLEMOVED FROM PLACES ORDER BY FLOOR",
+                    "SELECT X.* FROM ("
+                    +" SELECT ID, NAME, X, Y, FLOOR, CUSTOMER, WAITER, TICKETID, TABLEMOVED FROM PLACES"
+                            + " UNION ALL "
+                            + " SELECT -1, 'MESA VIRTUAL',240, 240, -1, NULL, NULL, NULL, NULL FROM DUAL)"
+                            + "  X ORDER BY X.FLOOR",
                     null, 
                     new SerializerReadClass(Place.class));
             m_aplaces = sent.list();
@@ -181,17 +191,25 @@ public class JTicketsBagRestaurantMap extends JTicketsBag {
         
         for (Place pl : m_aplaces) {
             int iFloor = 0;
-            
+            System.out.println("Iter Place: " + pl.getName());
             if (currfloor == null || !currfloor.getID().equals(pl.getFloor())) {
                 // Look for a new floor
-                do {
-                    currfloor = m_afloors.get(iFloor++);
-                } while (!currfloor.getID().equals(pl.getFloor()));
+                System.out.println("Iter Floor: " + m_afloors.size());   
+                for(Floor f:m_afloors){
+                    System.out.println("Iter Floor: " + f.getID());
+                  if(f.getID().equals(pl.getFloor()))
+                      
+                      currfloor = f;
+                }
             }
-
+            System.out.println("Floor: " + currfloor.getID());
             currfloor.getContainer().add(pl.getButton());
             pl.setButtonBounds();
-            pl.getButton().addActionListener(new MyActionListener(pl));
+            if(pl.getId().equals("-1")){
+              pl.getButton().addActionListener(new VirutalTableActionListener(pl));
+            } else {
+              pl.getButton().addActionListener(new MyActionListener(pl));
+            }
         }
         
         // Add the reservations panel
@@ -740,6 +758,23 @@ public class JTicketsBagRestaurantMap extends JTicketsBag {
                 }
             }
         }
+    }
+    
+    
+    private class VirutalTableActionListener implements ActionListener {
+        
+        private final Place m_place;
+        
+        public VirutalTableActionListener(Place place) {
+            m_place = place;
+        }
+        
+        @Override
+        public void actionPerformed(ActionEvent evt) {    
+            System.out.println("Mesa virtual");
+                        }                                
+                 
+        
     }
 
     /**

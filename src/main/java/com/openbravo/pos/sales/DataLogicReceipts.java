@@ -86,7 +86,21 @@ public class DataLogicReceipts extends BeanFactoryDataSingle {
                 , null
                 , new SerializerReadClass(SharedTicketInfo.class)).list();
     }
-    
+ 
+        /**
+     *
+     * @return
+     * @throws BasicException
+     */
+    public final List<SharedTicketInfo> getSharedTicketWebList() throws BasicException {
+        
+        return (List<SharedTicketInfo>) new StaticSentence(s
+// JG 20 Aug 13 Bug Fix: invalid SQL string
+//                , "SELECT ID, NAME, CONTENT PICKUPID FROM SHAREDTICKETS ORDER BY ID"                
+                , "SELECT ID, NAME, CONTENT, PICKUPID, WEB FROM WHERE WEB IS TRUE SHAREDTICKETS ORDER BY ID"
+                , null
+                , new SerializerReadClass(SharedTicketInfo.class)).list();
+    }
     /**
      *
      * @param id
@@ -116,6 +130,37 @@ public class DataLogicReceipts extends BeanFactoryDataSingle {
                 + "WHERE ID = ?"
                 , new SerializerWriteBasicExt(datas, new int[] {1, 2, 3, 0})).exec(values);
     }
+    
+    public final void createWebOrder() throws Exception {
+       PreparedSentence pr;
+        String id=null;  
+        String ticketName=null; 
+        int pickupid=0;
+       
+       TicketInfo tf=null;
+       
+        Object[] values = new Object[] {
+            id, 
+            ticketName, 
+            tf, 
+            pickupid
+        };
+        
+         Datas[] datas = new Datas[] {
+            Datas.STRING, 
+            Datas.STRING, 
+            Datas.SERIALIZABLE, 
+            Datas.INT
+        };
+         
+        
+         pr = new PreparedSentence(s
+                , "INSERT INTO SHAREDTICKETS ( ID, NAME, CONTENT, APPUSER, PICKUPID)"
+                + "VALUES (?, ?, ?, null, ?)"
+                , new SerializerWriteBasicExt(datas, new int[] {0, 1, 2, 3}));
+         
+         pr.exec();
+    };
     
     /**
      *

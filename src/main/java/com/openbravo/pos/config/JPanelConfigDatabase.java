@@ -99,7 +99,7 @@ public class JPanelConfigDatabase extends javax.swing.JPanel implements PanelCon
         dirname = dirname == null ? "./" : dirname;  
             jtxtDbDriverLib.setText(new File(new File(dirname), "lib/mysql-connector-java-5.1.26-bin.jar").getAbsolutePath());
             jtxtDbDriver.setText("com.mysql.jdbc.Driver");
-            jtxtDbURL.setText("jdbc:mysql://localhost:3306/pos");
+            jtxtDbURL.setText(config.getProperty("db.URL"));
            
         String sDBUser = config.getProperty("db.user");
         String sDBPassword = config.getProperty("db.password");        
