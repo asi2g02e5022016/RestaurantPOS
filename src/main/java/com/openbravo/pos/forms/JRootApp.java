@@ -34,6 +34,7 @@ import com.openbravo.pos.printer.TicketPrinterException;
 import com.openbravo.pos.scale.DeviceScale;
 import com.openbravo.pos.scanpal2.DeviceScanner;
 import com.openbravo.pos.scanpal2.DeviceScannerFactory;
+import com.openbravo.pos.util.LineaComandoUtils;
 import java.awt.CardLayout;
 import java.awt.ComponentOrientation;
 import java.awt.Cursor;
@@ -189,6 +190,10 @@ public class JRootApp extends JPanel implements AppView {
                         bsentence.putParameter("APP_VERSION", Matcher.quoteReplacement(AppLocal.APP_VERSION));
 
                         java.util.List l = bsentence.list();
+                        System.out.println("Ejecutando MAIN_ETL...");
+                        String salida = LineaComandoUtils.Run("C:\\Instaladores\\spoon\\data-integration\\Kitchen.bat -file=C:\\Instaladores\\JOBS\\MAIN_ETL.kjb --level=Minimal");
+                        System.out.println(salida);
+
                         if (l.size() > 0) {
                             JMessageDialog.showMessage(this, new MessageInf(MessageInf.SGN_WARNING, AppLocal.getIntString("Database.ScriptWarning"), l.toArray(new Throwable[l.size()])));
                         }
@@ -302,7 +307,11 @@ public class JRootApp extends JPanel implements AppView {
         jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         }
         }
-           
+        
+        System.out.println("Ejecutando MAIN_ETL...");
+        String salida = LineaComandoUtils.Run("C:\\Instaladores\\spoon\\data-integration\\Kitchen.bat -file=C:\\Instaladores\\JOBS\\MAIN_ETL.kjb --level=Minimal");
+        System.out.println(salida);
+                        
         showLogin();
 
         return true;

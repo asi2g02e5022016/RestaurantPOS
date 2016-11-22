@@ -33,6 +33,7 @@ import com.openbravo.pos.printer.TicketPrinterException;
 import com.openbravo.pos.scripting.ScriptEngine;
 import com.openbravo.pos.scripting.ScriptException;
 import com.openbravo.pos.scripting.ScriptFactory;
+import com.openbravo.pos.util.LineaComandoUtils;
 import java.awt.Dimension;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -340,9 +341,11 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
         jPanelTop = new javax.swing.JPanel();
         m_jCloseCashTop = new javax.swing.JButton();
         m_jPrintCashTop = new javax.swing.JButton();
+        m_jsubirFacturasTop = new javax.swing.JButton();
         jPanelBottom = new javax.swing.JPanel();
         m_jCloseCash = new javax.swing.JButton();
         m_jPrintCash = new javax.swing.JButton();
+        m_jsubirFacturas = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -605,6 +608,21 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
             }
         });
 
+        m_jsubirFacturasTop.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        m_jsubirFacturasTop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/reload.png"))); // NOI18N
+        m_jsubirFacturasTop.setText(AppLocal.getIntString("Button.CloseCash")); // NOI18N
+        m_jsubirFacturasTop.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        m_jsubirFacturasTop.setIconTextGap(2);
+        m_jsubirFacturasTop.setInheritsPopupMenu(true);
+        m_jsubirFacturasTop.setMaximumSize(new java.awt.Dimension(85, 33));
+        m_jsubirFacturasTop.setMinimumSize(new java.awt.Dimension(85, 33));
+        m_jsubirFacturasTop.setPreferredSize(new java.awt.Dimension(85, 33));
+        m_jsubirFacturasTop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                m_jsubirFacturasTopActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelTopLayout = new javax.swing.GroupLayout(jPanelTop);
         jPanelTop.setLayout(jPanelTopLayout);
         jPanelTopLayout.setHorizontalGroup(
@@ -613,6 +631,8 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
                 .addComponent(m_jPrintCashTop, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(m_jCloseCashTop, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(m_jsubirFacturasTop, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelTopLayout.setVerticalGroup(
@@ -620,7 +640,9 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTopLayout.createSequentialGroup()
                 .addGroup(jPanelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(m_jPrintCashTop, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(m_jCloseCashTop, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(m_jCloseCashTop, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(m_jsubirFacturasTop, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -653,6 +675,21 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
             }
         });
 
+        m_jsubirFacturas.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        m_jsubirFacturas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/reload.png"))); // NOI18N
+        m_jsubirFacturas.setText(AppLocal.getIntString("Button.CloseCash")); // NOI18N
+        m_jsubirFacturas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        m_jsubirFacturas.setIconTextGap(2);
+        m_jsubirFacturas.setInheritsPopupMenu(true);
+        m_jsubirFacturas.setMaximumSize(new java.awt.Dimension(85, 33));
+        m_jsubirFacturas.setMinimumSize(new java.awt.Dimension(85, 33));
+        m_jsubirFacturas.setPreferredSize(new java.awt.Dimension(85, 33));
+        m_jsubirFacturas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                m_jsubirFacturasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelBottomLayout = new javax.swing.GroupLayout(jPanelBottom);
         jPanelBottom.setLayout(jPanelBottomLayout);
         jPanelBottomLayout.setHorizontalGroup(
@@ -660,15 +697,18 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBottomLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(m_jPrintCash, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(m_jCloseCash, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(m_jsubirFacturas, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanelBottomLayout.setVerticalGroup(
             jPanelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(m_jCloseCash, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(m_jPrintCash, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(m_jPrintCash, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(m_jsubirFacturas, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -682,7 +722,7 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
                     .addComponent(jPanelTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -820,6 +860,22 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
         printPayments("Printer.PartialCash");
 
     }//GEN-LAST:event_m_jPrintCashActionPerformed
+
+    private void m_jsubirFacturasTopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jsubirFacturasTopActionPerformed
+       
+        System.out.println("Ejecutando ETL SUBE_FACTURAS...");
+        String salida = LineaComandoUtils.Run("C:\\Instaladores\\spoon\\data-integration\\Kitchen.bat -file=C:\\Instaladores\\JOBS\\SUBE_FACTURAS.kjb --level=Minimal");
+        System.out.println(salida);
+        JOptionPane.showMessageDialog(this, "Facturas cargadas!", AppLocal.getIntString("message.title"), JOptionPane.INFORMATION_MESSAGE);
+        
+    }//GEN-LAST:event_m_jsubirFacturasTopActionPerformed
+
+    private void m_jsubirFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jsubirFacturasActionPerformed
+        System.out.println("Ejecutando ETL SUBE_FACTURAS...");
+        String salida = LineaComandoUtils.Run("C:\\Instaladores\\spoon\\data-integration\\Kitchen.bat -file=C:\\Instaladores\\JOBS\\SUBE_FACTURAS.kjb --level=Minimal");
+        System.out.println(salida);
+        JOptionPane.showMessageDialog(this, "Facturas cargadas!", AppLocal.getIntString("message.title"), JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_m_jsubirFacturasActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -858,6 +914,8 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
     private javax.swing.JTextField m_jSequence;
     private javax.swing.JTable m_jTicketTable;
     private javax.swing.JTable m_jsalestable;
+    private javax.swing.JButton m_jsubirFacturas;
+    private javax.swing.JButton m_jsubirFacturasTop;
     // End of variables declaration//GEN-END:variables
     
 }

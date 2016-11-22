@@ -14,11 +14,17 @@
     <class name="payment.magcard"/>
     <class name="payment.debt"/>
     <class name="sales.PrintKitchen"/>
+    <class name="sales.EditLines"/>
+    <class name="sales.EditTicket"/>
+    <class name="sales.RefundTicket"/>
 
+    
 <!-- Standard button scripts -->
     <class name="button.print"/>
     <class name="button.opendrawer"/>
-    
+    <class name="button.refundit"/>
+    <class name="button.scharge"/>
+        
 <!-- Additional button scripts -->
     <class name="button.sendorder"/>
 

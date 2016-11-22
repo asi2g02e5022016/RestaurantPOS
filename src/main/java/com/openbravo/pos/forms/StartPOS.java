@@ -32,6 +32,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.SubstanceSkin;
 import com.openbravo.pos.ticket.TicketInfo;
+import com.openbravo.pos.util.LineaComandoUtils;
 
 
 // JG 16 May 2013 deprecated for pushingpixels
@@ -83,7 +84,7 @@ public class StartPOS {
                 if (!registerApp()) {
                     System.exit(1);
                 }
-                
+                                
                 AppConfig config = new AppConfig(args);
                 config.load();
                 
@@ -116,13 +117,20 @@ public class StartPOS {
 // JG 6 May 2013 to multicatch
                 } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {                
                     logger.log(Level.WARNING, "Cannot set Look and Feel", e);
-                }
+                }                                    
 // JG July 2014 Hostname for Tickets
                 String hostname = config.getProperty("machine.hostname");
                 String sucursal = config.getProperty("sucursal");
                 String direccion = config.getProperty("direccion");
                 String telefono = config.getProperty("telefono");
-                Integer codfinal = Integer.parseInt(config.getProperty("codfinal"));
+                Integer codfinal;
+                 String cod= config.getProperty("codfinal"); 
+                 if(cod!=null){
+                   codfinal= Integer.parseInt(cod);
+                 }
+                 else {
+                   codfinal = 0;
+                 };
                 TicketInfo.setHostname(hostname);
                 TicketInfo.setSucursal(sucursal);
                 TicketInfo.setDireccion(direccion);
