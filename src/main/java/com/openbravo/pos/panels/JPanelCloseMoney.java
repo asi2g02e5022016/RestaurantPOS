@@ -677,7 +677,7 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
 
         m_jsubirFacturas.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         m_jsubirFacturas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/reload.png"))); // NOI18N
-        m_jsubirFacturas.setText(AppLocal.getIntString("Button.CloseCash")); // NOI18N
+        m_jsubirFacturas.setText("Subir Faturas");
         m_jsubirFacturas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         m_jsubirFacturas.setIconTextGap(2);
         m_jsubirFacturas.setInheritsPopupMenu(true);
